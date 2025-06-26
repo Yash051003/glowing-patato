@@ -27,6 +27,28 @@ TARGET = "profile_to_check"
 
 **Note:** Don't push your actual credentials to GitHub! Use environment variables or a config file.
 
+Recent Update: Session Management
+
+I added a separate login function that handles 2FA and saves your session, so you don't have to enter verification codes every single time. Just add the 
+
+```bash
+python login_sessions.py (code block in the top of the script)
+```
+
+Then replace the simple login in your main function with:
+python
+# Replace this line:
+# client.login(USERNAME, PASSWORD)
+
+# With this:
+```bash
+python if not login_with_session(client, USERNAME, PASSWORD):
+    print("Failed to login, exiting...")
+    return
+```
+
+This was a game changer - no more entering 2FA codes every time I test the script!
+
 ## Running it
 
 Just run:
